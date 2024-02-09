@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Confirmação de Presença</title>
+</head>
+
+<body>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <h1>Confirmação de Presença Farofa 2K</h1>
+
+    <form action="/confirm" method="post">
+        <label for="name">Seu Nome:</label>
+        <input type="text" id="name" name="name" required>
+
+        <!-- Posicione o campo de DDD à direita do campo de telefone -->
+        <label for="phone" style="margin-right: 8px;">Seu Telefone:</label>
+        <div style="display: flex; align-items: center; margin-bottom: 16px;">
+            <select id="ddd" name="ddd" required style="margin-left: 8px; width: 50px;">
+                <!-- Adicione uma lista de DDDs sem nomes -->
+                <option value="11">11</option>
+                <option value="21">21</option>
+                <option value="41">41</option>
+                <option value="42">42</option>
+                <option value="44">44</option>
+                <option value="43">43</option>
+                <!-- Adicione mais opções conforme necessário -->
+            </select>
+            <input type="tel" id="phone" name="phone" pattern="[0-9]{8,9}" required
+                placeholder="Digite os 8 ou 9 dígitos do telefone">
+
+        </div>
+
+        <label for="attending">Confirmará Presença?</label>
+        <select id="attending" name="attending" required>
+            <option value="yes">Sim</option>
+            <option value="no">Não</option>
+        </select>
+
+        <label for="message">Deixe uma Mensagem de Felicitações:</label>
+        <textarea id="message" name="message" rows="4"></textarea>
+
+        <button type="submit">Confirmar</button>
+    </form>
+
+
+
+    <div class="fab">
+        <button class="main">&#x2665;</button>
+        <ul>
+            <li>
+                <label for="opcao1">Match</label>
+                <button id="opcao1">&#x2665;</button>
+            </li>
+            <li>
+                <label for="opcao2">Local</label>
+                <button id="opcao2">&#x27A4;</button>
+            </li>
+            <li>
+                <label for="opcao3">Presentear</label>
+                <button id="opcao3">🎁</button>
+            </li>
+        </ul>
+    </div>
+
+    <div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="mapModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="mapModalLabel">Localização do Evento</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="/map.png" alt="Imagem de presente">
+                    <div id="map"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="mapPix" tabindex="-1" role="dialog" aria-labelledby="mapModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="mapModalLabel">Presenteie os aniversáriantes</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="/pix.png" alt="Imagem de presente">
+                    <div id="pix"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Exibe todas as confirmações -->
+    <h2>Lista de Confirmações</h2><!--  -->
+    <ul>
+        <% confirmations.forEach(conf=> { %>
+            <li>
+                <strong>
+                    <%= conf.name %>
+                </strong> -
+                Telefone: <%= conf.phone %> -
+                    Confirmou: <%= conf.attending==='yes' ? 'Sim' : 'Não' %>
+                        <% if (conf.message) { %>
+                            <p>Mensagem: <%= conf.message %>
+                            </p>
+                            <% } %>
+            </li>
+            <% }); %>
+    </ul>
+
+    <!-- Adicione este trecho ao seu HTML onde deseja exibir o chat -->
+    <div id="chat-name-container">
+        <label for="chat-name">Seu Nome:</label>
+        <input type="text" id="chat-name" name="chat-name" required>
+        <button onclick="startChat()">Iniciar Chat</button>
+    </div>
+
+    <div id="chat-container" style="display: none;">
+        <div id="chat-header">
+            <span onclick="toggleChat()">Fechar</span>
+        </div>
+        <div id="chat-content">
+            <ul id="messages"></ul>
+            <form id="chat-form">
+                <input id="m" autocomplete="off" /><button type="submit">Enviar</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('opcao2').addEventListener('click', function () {
+            console.log("Clique no botão de opção 2");
+            $('#mapModal').modal('show');
+            initMap();  // Certifique-se de chamar a inicialização do mapa, se necessário
+        });
+    </script>
+
+
+    <script>
+        document.getElementById('opcao3').addEventListener('click', function () {
+            console.log("Clique no botão de opção 2");
+            $('#mapPix').modal('show');visualViewport
+            initMap();  // Certifique-se de chamar a inicialização do mapa, se necessário
+        });
+    </script>
+
+
+    <script>
+        // Conta o número de confirmações
+        var totalConfirmations = <%= confirmations.length %>;
+
+        // Atualiza o conteúdo do botão da interface flutuante (fab) com o número total
+        document.querySelector('.fab button.main').innerText = totalConfirmations;
+    </script>
+    <script>
+
+        // Recupera todas as mensagens do chat do servidor e exibe-as
+        function getChatMessages() {
+            fetch('/chat')
+                .then(response => response.json())
+                .then(messages => {
+                    const ul = document.getElementById('messages');
+                    messages.forEach(message => {
+                        const li = document.createElement('li');
+                        li.appendChild(document.createTextNode(`${message.name}: ${message.message}`));
+                        ul.appendChild(li);
+                    });
+                })
+                .catch(error => console.error('Erro ao obter mensagens do chat:', error));
+        }
+
+        // Chama a função para obter mensagens do chat ao carregar a página
+        getChatMessages();
+
+        // Manipula mensagens de chat recebidas
+        socket.on('chat message', function (data) {
+            var ul = document.getElementById('messages');
+            var li = document.createElement('li');
+            li.appendChild(document.createTextNode(`${data.name}: ${data.message}`));
+            ul.appendChild(li);
+        });
+
+        // Inicia o chat
+        function startChat() {
+            var chatName = document.getElementById('chat-name').value;
+            if (chatName.trim() !== '') {
+                document.getElementById('chat-name-container').style.display = 'none';
+                document.getElementById('chat-container').style.display = 'block';
+                document.getElementById('chat-button').style.display = 'none';
+                document.getElementById('messages').innerHTML += '<li>Sistema: Bem-vindo ao chat, ' + chatName + '!</li>';
+
+                // Adicione o nome do chat à variável global chatName
+                window.chatName = chatName;
+            } else {
+                alert('Por favor, insira seu nome para iniciar o chat.');
+            }
+        }
+
+        // Manipula o envio do formulário de chat
+        document.getElementById('chat-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            var input = document.getElementById('m');
+            var message = input.value.trim();
+            if (message !== '') {
+                // Envia a mensagem para o servidor
+                fetch('/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name: window.chatName, message: message })
+                })
+                    .catch(error => console.error('Erro ao enviar mensagem do chat:', error));
+
+                input.value = '';
+            }
+        });
+
+        // Alterna a visibilidade do chat
+        function toggleChat() {
+            var chatContainer = document.getElementById('chat-container');
+            chatContainer.style.display = chatContainer.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
+
+    <script>
+        // Função para mostrar a localização do evento (exemplo)
+        function showEventLocation() {
+            // Substitua com a lógica real para mostrar a localização do evento
+            alert("Local do Evento: Rua XYZ, Cidade ABC");
+        }
+    </script>
+
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,297 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+h1 {
+    background-color: #3498db;
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+form {
+    background-color: #ffffff;
+    padding: 20px;
+    margin: 0 auto;
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+input,
+select,
+textarea,
+button {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #3498db;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+#chat-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #3498db;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#chat-container {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#chat-header {
+    background-color: #3498db;
+    color: #ffffff;
+    padding: 8px;
+    text-align: right;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    cursor: pointer;
+}
+
+#chat-content {
+    padding: 16px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+
+
+
+
+
+/* Estilo para o formulário de confirmação */
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 400px;
+    margin: 50px auto;
+    position: relative;
+    z-index: 1;
+}
+
+h1 {
+    color: #fff;
+    text-align: center;
+}
+
+label,
+select,
+textarea,
+button {
+    display: block;
+    margin-bottom: 15px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Efeito de festa para o formulário */
+@keyframes party {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(5deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+/* Animação de festa ao passar o mouse sobre o botão */
+button:hover {
+    animation: party 0.5s infinite;
+}
+
+.confetti {
+    position: fixed;
+    background-color: #f0f;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* Animação de queda do confete */
+@keyframes confetti-fall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+    }
+}
+
+/* Aplica a animação de queda do confete */
+.confetti-fall {
+    animation: confetti-fall 3s linear;
+}
+
+.fab {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}
+
+.fab button {
+    cursor: pointer;
+    width: 48px;
+    height: 48px;
+    border-radius: 30px;
+    background-color: #cb60b3;
+    border: none;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, .4);
+    font-size: 24px;
+    color: white;
+
+    -webkit-transition: .2s ease-out;
+    -moz-transition: .2s ease-out;
+    transition: .2s ease-out;
+}
+
+.fab button:focus {
+    outline: none;
+}
+
+.fab button.main {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    background-color: #5b19b7;
+    right: 0;
+    bottom: 0;
+    z-index: 20;
+}
+
+.fab button.main:before {
+    content: '';
+}
+
+.fab ul {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 0;
+    padding-right: 5px;
+    margin: 0;
+    list-style: none;
+    z-index: 10;
+
+    -webkit-transition: .2s ease-out;
+    -moz-transition: .2s ease-out;
+    transition: .2s ease-out;
+}
+
+.fab ul li {
+    display: flex;
+    justify-content: flex-start;
+    position: relative;
+    margin-bottom: -10%;
+    opacity: 0;
+
+    -webkit-transition: .3s ease-out;
+    -moz-transition: .3s ease-out;
+    transition: .3s ease-out;
+}
+
+.fab ul li label {
+    margin-right: 10px;
+    white-space: nowrap;
+    display: block;
+    margin-top: 10px;
+    padding: 5px 8px;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
+    border-radius: 3px;
+    height: 18px;
+    font-size: 16px;
+    pointer-events: none;
+    opacity: 0;
+
+    -webkit-transition: .2s ease-out;
+    -moz-transition: .2s ease-out;
+    transition: .2s ease-out;
+}
+
+.fab button.main:active,
+.fab button.main:focus {
+    outline: none;
+    background-color: #7716ff;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, .5);
+}
+
+.fab button.main:active:before,
+.fab button.main:focus:before {
+    content: '↑';
+}
+
+.fab button.main:active+ul,
+.fab button.main:focus+ul {
+    bottom: 70px;
+}
+
+.fab button.main:active+ul li,
+.fab button.main:focus+ul li {
+    margin-bottom: 10px;
+    opacity: 1;
+}
+
+.fab button.main:active+ul li:hover label,
+.fab button.main:focus+ul li:hover label {
+    opacity: 1;
+}
+
+/* Estilo para o modal */
+#mapModal {
+    display: none;
+}
+
+#map {
+    height: 300px;
+}
