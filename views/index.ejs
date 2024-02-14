@@ -12,64 +12,221 @@
 <body>
 
 
+
+
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <h1>Confirmação de Presença Farofa 2K</h1>
 
-    <form action="/confirm" method="post">
-        <label for="name">Seu Nome:</label>
-        <input type="text" id="name" name="name" required>
+    <div class="phone-frame">
+        <div class="phone-screen">
+            <div class="imageContainer">
+                <form action="/confirm" method="post">
+                    <label for="name">Seu Nome:</label>
+                    <input type="text" id="name" name="name" required>
 
-        <!-- Posicione o campo de DDD à direita do campo de telefone -->
-        <label for="phone" style="margin-right: 8px;">Seu Telefone:</label>
-        <div style="display: flex; align-items: center; margin-bottom: 16px;">
-            <select id="ddd" name="ddd" required style="margin-left: 8px; width: 50px;">
-                <!-- Adicione uma lista de DDDs sem nomes -->
-                <option value="11">11</option>
-                <option value="21">21</option>
-                <option value="41">41</option>
-                <option value="42">42</option>
-                <option value="44">44</option>
-                <option value="43">43</option>
-                <!-- Adicione mais opções conforme necessário -->
-            </select>
-            <input type="tel" id="phone" name="phone" pattern="[0-9]{8,9}" required
-                placeholder="Digite os 8 ou 9 dígitos do telefone">
+                    <!-- Posicione o campo de DDD à direita do campo de telefone -->
+                    <label for="phone" style="margin-right: 8px;">Seu Telefone:</label>
+                    <div style="display: flex; align-items: center; margin-bottom: 16px;">
+                        <select id="ddd" name="ddd" required style="margin-left: 8px; width: 50px;">
+                            <!-- Adicione uma lista de DDDs sem nomes -->
+                            <option value="11">11</option>
+                            <option value="21">21</option>
+                            <option value="41">41</option>
+                            <option value="42">42</option>
+                            <option value="44">44</option>
+                            <option value="43">43</option>
+                            <!-- Adicione mais opções conforme necessário -->
+                        </select>
+                        <input type="tel" id="phone" name="phone" pattern="[0-9]{8,9}" required
+                            placeholder="Digite os 8 ou 9 dígitos do telefone">
 
+                    </div>
+
+
+                    <label for="attending">Confirmará Presença?</label>
+                    <select id="attending" name="attending" required>
+                        <option value="yes">Sim</option>
+                        <option value="no">Não</option>
+                    </select>
+
+                    <label for="message">Deixe uma Mensagem de Felicitações:</label>
+                    <textarea id="message" name="message" rows="4"></textarea>
+
+                    <button type="submit">Confirmar</button>
+                </form>
+                <div class="overlay"></div>
+            </div>
+            <!-- <div class="button-menu button-menu1"></div> -->
+            <svg class="button-menu button-menu1" height="24" width="24"
+                onclick="document.querySelector('.phone-screen').classList.toggle('active')">
+                <circle class="bg" r="12" cx="12" cy="12" />
+                <path class="line line1" d="M 6,8 H 18" />
+                <path class="line line2" d="M 6,12 H 18" />
+                <path class="line line3" d="M 6,16 H 18" />
+            </svg>
+            <div class="menu" onclick="document.querySelector('.phone-screen').classList.remove('active')">
+                <div class="option">
+                    <svg fill="#000000" width="70%" height="70%" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <path
+                            d="M25 2C12.309295 2 2 12.309295 2 25C2 37.690705 12.309295 48 25 48C37.690705 48 48 37.690705 48 25C48 12.309295 37.690705 2 25 2 z M 25 4C36.609824 4 46 13.390176 46 25C46 36.609824 36.609824 46 25 46C13.390176 46 4 36.609824 4 25C4 13.390176 13.390176 4 25 4 z M 24.828125 17C21.234125 17 20.208984 19.567484 20.208984 21.021484C20.208984 22.989484 21.749594 24.014484 22.433594 24.271484C21.577594 24.613484 19.695312 25.555031 19.695312 28.207031C19.695312 30.431031 21.064937 32.998047 25.085938 32.998047C26.625937 32.998047 30.304688 32.228031 30.304688 28.207031C30.304688 25.469031 28.421469 24.528484 27.480469 24.271484C28.079469 24.015484 29.619141 22.989484 29.619141 21.021484C29.619141 20.251484 29.363125 17 24.828125 17 z M 15.5 17.25C15.072 19.648 13.399 20.113219 11 20.199219L11 21.740234L15 21.75L15 32.75L17 32.75L17 17.25L15.5 17.25 z M 24.914062 18.710938C27.224062 18.710938 27.566406 20.337422 27.566406 21.107422C27.566406 21.963422 27.139 23.673828 25 23.673828C22.348 23.673828 22.176734 21.535422 22.177734 21.107422C22.177734 20.764422 22.347062 18.710938 24.914062 18.710938 z M 36 21L36 24L33 24L33 26L36 26L36 29L38 29L38 26L41 26L41 24L38 24L38 21L36 21 z M 25 25.298828C27.567 25.298828 28.251953 27.610922 28.251953 28.294922C28.251953 29.748922 27.139 31.373047 25 31.373047C23.374 31.373047 21.662109 30.519922 21.662109 28.294922C21.662109 27.010922 22.519 25.298828 25 25.298828 z" />
+                    </svg>
+                    <!-- <div class="japanese">にぎり</div> -->
+                    <div class="roman">Chacara</div>
+                </div>
+                <div class="option">
+                    <svg fill="#000000" width="70%" height="70% " viewBox="0 -24.48 122.88 122.88" version="1.1"
+                        id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        style="enable-background:new 0 0 122.88 73.91" xml:space="preserve">
+
+                        <style type="text/css">
+                            <![CDATA[
+                            .st0 {
+                                fill-rule: evenodd;
+                                clip-rule: evenodd;
+                            }
+                            ]]>
+
+                        </style>
+
+                        <g>
+
+                            <path class="st0"
+                                d="M97.31,36.95c0,9.92-3.49,18.39-10.48,25.38c-7,7-15.46,10.5-25.38,10.5c-9.88,0-18.34-3.49-25.35-10.5 c-7-6.99-10.52-15.46-10.52-25.38c0-9.89,3.51-18.32,10.52-25.34c7.03-7,15.48-10.52,25.35-10.52c9.92,0,18.38,3.51,25.38,10.52 C93.81,18.63,97.31,27.06,97.31,36.95L97.31,36.95L97.31,36.95L97.31,36.95z M16.37,30.34c3.15-2.15,4.73-4.96,4.46-11.39V2.42 c-0.03-2.31-4.22-2.59-4.43,0l-0.16,13.41c-0.01,2.51-3.78,2.59-3.77,0l0.16-13.87c-0.05-2.48-4.05-2.73-4.1,0 c0,3.85-0.16,10.02-0.16,13.87c0.2,2.43-3.3,2.75-3.21,0L5.32,2.05C5.23,0.18,3.17-0.49,1.77,0.39C0.28,1.34,0.58,3.25,0.52,4.86 L0,20.68c0.08,4.6,1.29,8.34,4.89,9.93c0.55,0.24,1.31,0.43,2.19,0.56L5.84,69.75c-0.07,2.29,1.8,4.16,3.99,4.16h0.5 c2.47,0,4.56-2.11,4.49-4.68l-1.09-38.07C14.88,30.98,15.83,30.71,16.37,30.34L16.37,30.34z M106.74,68.59l-0.06-34.65 c-12.15-7.02-8.28-34.07,3.88-33.92c14.78,0.17,16.53,30.48,3.82,33.81l0.94,34.9C115.5,75.33,106.75,75.94,106.74,68.59 L106.74,68.59z M82.33,36.92c0,5.78-2.03,10.71-6.12,14.8c-4.08,4.07-9.01,6.12-14.79,6.12c-5.74,0-10.67-2.05-14.75-6.12 c-4.08-4.09-6.12-9.02-6.12-14.8c0-5.74,2.04-10.67,6.12-14.74c4.09-4.07,9.01-6.12,14.75-6.12C73.03,16.07,82.33,25.3,82.33,36.92 L82.33,36.92L82.33,36.92z M87.22,36.92c0-7.1-2.5-13.17-7.53-18.2s-11.12-7.53-18.27-7.53c-7.13,0-13.2,2.5-18.2,7.53 c-5.03,5.03-7.56,11.1-7.56,18.2c0,7.12,2.53,13.19,7.56,18.24c5,5.04,11.07,7.57,18.2,7.57c7.14,0,13.23-2.53,18.27-7.57 C84.71,50.1,87.22,44.03,87.22,36.92L87.22,36.92L87.22,36.92L87.22,36.92z" />
+
+                        </g>
+
+                    </svg>
+                    <!-- <div class="japanese">細巻き</div> -->
+                    <div class="roman">Comida</div>
+                </div>
+                <div class="option">
+                    <svg height="70%" width="70%" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve">
+                        <style type="text/css">
+                            .st0 {
+                                fill: #000000;
+                            }
+                        </style>
+                        <g>
+                            <path class="st0" d="M230.632,191.368c-22.969,0-41.573,18.612-41.573,41.573c0,22.977,18.604,41.574,41.573,41.574
+		c22.97,0,41.574-18.596,41.574-41.574C272.205,209.98,253.601,191.368,230.632,191.368z" />
+                            <path class="st0" d="M482.062,249.793v-0.082h-4.102v0.082c-1.179,0.082-2.35,0.172-3.44,0.336
+		c-1.679-8.303-6.542-15.509-13.421-20.119C459.593,103.979,356.957,2.35,230.59,2.35C103.307,2.35,0,105.568,0,232.941
+		s103.307,230.591,230.59,230.591c28.767,0,56.272-5.282,81.673-14.928c9.565,15.428,21.389,29.012,34.966,39.92
+		c16.688,13.413,40.419,21.126,65.238,21.126c44.104,0,79.83-23.648,93.244-61.799c4.11-11.57,6.207-23.141,6.289-33.622V281.655
+		C512,264.72,498.751,250.8,482.062,249.793z M136.029,232.949c0-52.252,42.351-94.602,94.602-94.602
+		c52.251,0,94.603,42.351,94.603,94.602c0,52.251-42.352,94.603-94.603,94.603C178.38,327.552,136.029,285.2,136.029,232.949z
+		 M493.051,407.858c0,0,0,0.917,0,3.185v3.186c-0.09,8.05-1.678,17.36-5.2,27.334c-12.242,34.711-44.358,49.14-75.384,49.14
+		c-20.291,0-40.001-6.207-53.414-16.942c-10.98-8.884-20.963-20.037-29.012-32.697c-4.528-6.796-8.467-14.092-11.816-21.634
+		c-12.332-28.005-19.21-45.618-22.978-56.517c-3.774-10.817-4.618-14.838-4.782-15.935c-0.671-4.021,0.508-8.049,3.268-10.981
+		c2.432-2.767,5.871-4.274,9.556-4.274l1.098,0.082c1.588,0.164,3.095,0.59,4.356,1.089c1.261,0.589,2.35,1.261,3.357,2.015
+		c1.933,1.507,3.603,3.267,5.617,5.781c3.857,5.036,8.894,13.167,16.263,28.43c3.112,6.534,6.289,11.153,8.974,14.084
+		c2.686,2.932,4.782,4.275,6.207,4.782c0.835,0.418,1.425,0.418,1.843,0.418c0.499,0,0.843,0,1.261-0.253
+		c0.418-0.164,0.925-0.5,1.334-1.007c0.926-0.918,1.426-2.433,1.344-2.932V278.47c0-7.124,5.871-12.995,13.004-12.995
+		c7.205,0,13.076,5.871,13.076,12.995v75.384h12.324V253.232c0-7.124,5.789-12.995,13.003-12.995
+		c7.206,0,13.078,5.871,13.078,12.995v100.622h7.55h3.185V348.4v-91.982c0-7.206,5.872-12.995,12.996-12.995
+		c7.214,0,13.077,5.789,13.077,12.995v24.066v73.37h10.735v-72.198c0-7.206,5.871-12.995,12.995-12.995
+		c7.214,0,13.086,5.789,13.086,12.995V407.858z" />
+                        </g>
+                    </svg>
+                    <!--  <div class="japanese">天ぷら</div> -->
+                    <div class="roman">Musica</div>
+                </div>
+                <div class="option">
+                    <svg width="70%" height="70%" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <title>Party</title>
+                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="Party">
+                                <rect id="Rectangle" fill-rule="nonzero" x="0" y="0" width="24" height="24">
+
+                                </rect>
+                                <path
+                                    d="M4.05024,19.9498 C4.75734,20.6569 5.46444989,20.6569 6.52511,20.3033 L16.9745,14.9203 C17.5768,14.61 17.7027,13.8033 17.2237,13.3242 L10.6758,6.77632 C10.1967,6.29726 9.38998,6.42319 9.07971,7.02547 L3.69668,17.4749 C3.34313,18.5355 3.34313,19.2426 4.05024,19.9498 Z"
+                                    id="Path" stroke="#0C0310" stroke-width="2" stroke-linecap="round">
+
+                                </path>
+                                <path
+                                    d="M18,6 L19.3675,5.31623 C19.6787,5.16066 19.746,4.74598 19.5,4.5 L19.5,4.5 C19.254,4.25402 19.3213,3.83934 19.6325,3.68377 L21,3"
+                                    id="Path" stroke="#0C0310" stroke-width="2" stroke-linecap="round">
+
+                                </path>
+                                <line x1="16" y1="8" x2="16.125" y2="8" id="Path" stroke="#0C0310" stroke-width="2"
+                                    stroke-linecap="round">
+
+                                </line>
+                                <line x1="19.375" y1="11.5" x2="19.5" y2="11.5" id="Path" stroke="#0C0310"
+                                    stroke-width="2" stroke-linecap="round">
+
+                                </line>
+                                <line x1="12" y1="4" x2="11" y2="2.5" id="Path" stroke="#0C0310" stroke-width="2"
+                                    stroke-linecap="round">
+
+                                </line>
+                                <line x1="15.5" y1="4.5" x2="16" y2="2" id="Path" stroke="#0C0310" stroke-width="2"
+                                    stroke-linecap="round">
+
+                                </line>
+                                <line x1="22" y1="9" x2="19.5" y2="8.5" id="Path" stroke="#0C0310" stroke-width="2"
+                                    stroke-linecap="round">
+
+                                </line>
+                                <line x1="12" y1="8.5" x2="12" y2="17.5" id="Path" stroke="#0C0310" stroke-width="2"
+                                    stroke-linecap="round">
+
+                                </line>
+                                <line x1="8" y1="9.5" x2="8" y2="19.5" id="Path" stroke="#0C0310" stroke-width="2"
+                                    stroke-linecap="round">
+
+                                </line>
+                            </g>
+                        </g>
+                    </svg>
+                    <!--  <div class="japanese">そば</div> -->
+                    <div class="roman">Festa</div>
+                </div>
+                <div class="option">
+                    <svg fill="#000000" height="70%" width="70%" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 307.45 307.45" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        enable-background="new 0 0 307.45 307.45">
+                        <g>
+                            <circle cx="40.483" cy="40.085" r="27.59" />
+                            <circle cx="195.35" cy="33.018" r="25.907" />
+                            <path
+                                d="m210.22,209.538l2.531,6.9-13.835,65.324c-1.716,8.105 3.463,16.065 11.567,17.782 1.048,0.222 2.092,0.328 3.122,0.328 6.936-0.001 13.165-4.839 14.66-11.896l14.265-67.357-5.513-4.752-26.797-6.329z" />
+                            <path
+                                d="m137.793,73.313c0,0-37.262-5.295-51.681-7.358-5.839-0.836-10.679,0.981-12.242,1.578-7.762,2.964-31.05,11.856-31.05,11.856-9.616,3.672-14.435,14.444-10.764,24.06l6.638,17.386 5.143-1.322 23.05-34.417-15.627,44.899-41.5,10.666c-6.559,1.686-10.913,8.195-9.491,14.815 1.195,5.567 5.876,9.41 11.195,9.849 1.355,0.112 2.75,0.004 4.141-0.354l48.369-12.432c4.054-1.042 7.317-4.044 8.694-7.998l17.256-49.581-5.322,50.83c-1.249,9.495-6.586,14.861-14.551,16.909l-10.676,2.744 2.792,7.311-17.945,48.326c-0.751,2.024-1.058,4.186-0.897,6.338l4.286,57.567c0.587,7.883 7.165,13.888 14.943,13.888 0.373,0 0.751-0.015 1.129-0.042 8.262-0.615 14.46-7.811 13.846-16.072l-4.043-54.305 17.901-45.274c0.396-1.001 1.268-1.737 2.322-1.958 2.44-0.512 4.505,1.836 3.685,4.191l-11.532,33.111c-1.133,3.059-1.239,6.403-0.301,9.526l18.495,61.597c1.95,6.496 7.909,10.69 14.36,10.69 1.429,0 2.881-0.206 4.319-0.638 7.935-2.382 12.436-10.745 10.053-18.68l-17.05-56.783 16.749-45.194c1.477-3.987 1.142-8.196-0.574-11.743l-10.563-27.664 25.703-48.053c1.924-3.598 1.972-7.907 0.127-11.547-1.843-3.638-5.348-6.147-9.387-6.722zm-28.251,35.395l-5.72-14.981 12.762,1.817-7.042,13.164z" />
+                            <path
+                                d="m302.243,216.643l-42.801-36.895c-1.825-1.573-4.001-2.683-6.346-3.237l-72.533-17.136 47.755,.703v-26.053c-2.827-0.332-5.599-1.156-8.142-2.43-0.826-0.414-1.602-0.922-2.311-1.514l-39.244-32.74 46.932,23.525c3.743,1.876 8.175,1.754 11.809-0.325l43.349-24.798c1.246-0.713 2.323-1.608 3.216-2.632 3.402-3.9 4.142-9.678 1.427-14.425-3.428-5.993-11.064-8.071-17.057-4.643l-37.531,21.47-42.5-21.304 40.517,8.614 33.557-19.196c2.964-1.695 6.252-2.738 9.627-3.091l12.303-13.364c4.676-5.079 4.349-12.986-0.73-17.662-5.078-4.677-12.987-4.35-17.662,0.73l-30.917,33.583-18.133,2.86h-37.218c-9.665,0-17.472,7.835-17.472,17.501v90.394-0.024c0.252,6.569 4.819,12.433 11.528,14.018l68.967,16.292 40.023,34.501c2.834,2.442 6.318,3.64 9.787,3.639 4.213,0 8.402-1.766 11.368-5.206 5.409-6.276 4.707-15.746-1.568-21.155z" />
+                        </g>
+                    </svg>
+                    <div class="roman">Dança</div>
+                </div>
+                <div class="option">
+                    <svg fill="#000000" height="70%" width="70%" version="1.1" id="Layer_1"
+                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        viewBox="0 0 128 128" xml:space="preserve">
+                        <g>
+                            <ellipse transform="matrix(0.9973 -7.377642e-02 7.377642e-02 0.9973 -1.6973 2.2208)"
+                                cx="29.2" cy="24.1" rx="8" ry="8" />
+                            <path d="M82.8,62.6c1.6-2.2,1.2-5.4-1.1-7l-12.2-8.7L78,35.1c1.6-1.9,2.5-4.4,2.3-7.1c-0.4-5.5-5.2-9.6-10.7-9.2
+		c0,0-21.4,1.6-21.5,1.6c-3.4,0.3-6.3,2.2-7.9,4.9L29.9,42.5L15.8,46c-1.9,0.4-3,2.4-2.5,4.3c0.4,1.9,2.4,3,4.3,2.5l15.6-4
+		c0.9-0.3,1.6-0.8,2.1-1.6l6.2-10.4l24.3-1.8l-7.2,10c-0.5,0.5-0.7,1.3-0.9,2c-0.4,1.9,0.5,3.9,2,5l16.2,11.7
+		C78.1,65.4,81.3,64.9,82.8,62.6z" />
+                            <polygon
+                                points="114.8,66.4 102.6,66.4 69.2,66.4 69.2,78.4 102.6,78.4 102.6,116.2 114.9,116.2 114.9,66.4 	" />
+                        </g>
+                    </svg>
+                    <div class="roman">Piscina</div>
+                </div>
+
+
+            </div>
         </div>
-
-        <label for="attending">Confirmará Presença?</label>
-        <select id="attending" name="attending" required>
-            <option value="yes">Sim</option>
-            <option value="no">Não</option>
-        </select>
-
-        <label for="message">Deixe uma Mensagem de Felicitações:</label>
-        <textarea id="message" name="message" rows="4"></textarea>
-
-        <button type="submit">Confirmar</button>
-    </form>
-
-
-
-    <div class="fab">
-        <button class="main">&#x2665;</button>
-        <ul>
-            <li>
-                <label for="opcao1">Match</label>
-                <button id="opcao1">&#x2665;</button>
-            </li>
-            <li>
-                <label for="opcao2">Local</label>
-                <button id="opcao2">&#x27A4;</button>
-            </li>
-            <li>
-                <label for="opcao3">Presentear</label>
-                <button id="opcao3">🎁</button>
-            </li>
-        </ul>
     </div>
 
     <div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="mapModalLabel"
@@ -132,6 +289,25 @@
             <% }); %>
     </ul>
 
+
+    <div class="fab">
+        <button class="main">&#x2665;</button>
+        <ul>
+            <li>
+                <label for="opcao1">Match</label>
+                <button id="opcao1">&#x2665;</button>
+            </li>
+            <li>
+                <label for="opcao2">Local</label>
+                <button id="opcao2">&#x27A4;</button>
+            </li>
+            <li>
+                <label for="opcao3">Presentear</label>
+                <button id="opcao3">🎁</button>
+            </li>
+        </ul>
+    </div>
+
     <!-- Adicione este trecho ao seu HTML onde deseja exibir o chat -->
     <div id="chat-name-container">
         <label for="chat-name">Seu Nome:</label>
@@ -163,7 +339,7 @@
     <script>
         document.getElementById('opcao3').addEventListener('click', function () {
             console.log("Clique no botão de opção 2");
-            $('#mapPix').modal('show');visualViewport
+            $('#mapPix').modal('show'); visualViewport
             initMap();  // Certifique-se de chamar a inicialização do mapa, se necessário
         });
     </script>

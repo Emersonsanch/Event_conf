@@ -14,17 +14,21 @@ Lista de Participantes: Acompanhe a lista de participantes confirmados, facilita
 
 Notificações: Receba notificações automáticas sobre confirmações e novas adesões, mantendo os organizadores atualizados.
 
-Instalação
+# Instalação
 Clone o Repositório:
 
 bash
 Copy code
-git clone https://github.com/seu-usuario/sistema-de-confirmacao-de-evento.git
+git clone https://github.com/Emersonsanch/Event_conf.git
 cd sistema-de-confirmacao-de-evento
 Configuração:
 
+
+
 Configure as variáveis de ambiente conforme as orientações no arquivo .env.example.
 Instale as Dependências:
+
+
 
 bash
 Copy code
@@ -34,7 +38,7 @@ Execute o Sistema:
 bash
 Copy code
 npm start
-Acesse o sistema através do navegador utilizando o endereço http://localhost:3000.
+Acesse o sistema através do navegador utilizando o endereço http://localhost:3030.
 
 Contribuição
 Contribuições são bem-vindas! Se encontrou algum problema ou tem sugestões para melhorias, sinta-se à vontade para abrir uma issue ou enviar um pull request.
